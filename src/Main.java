@@ -8,6 +8,8 @@ public class Main {
         int choice;
         double[] results =null;
         double[] previousResults=null;
+        String currentPatientId=null;
+        String previousPatientId=null;
 
         do {
             System.out.println("\n===============================================================");
@@ -19,7 +21,8 @@ public class Main {
             System.out.println("3. View Result Status");
             System.out.println("4. Generate Report");
             System.out.println("5. Compare Previous Reports");
-            System.out.println("6. Exit");
+            System.out.println("6. Search Patient by ID");
+            System.out.println("7. Exit");
 
             System.out.print("Enter your choice: ");
 
@@ -37,7 +40,9 @@ public class Main {
                        PatientDetails.enterPatientDetails();
                        if(results!=null){
                            previousResults=results;
+                           previousPatientId=currentPatientId;
                        }
+                       currentPatientId=PatientDetails.patientId;
                         results=PatientTestResults.enterTestResults(sc);
                         break;
 
@@ -60,13 +65,20 @@ public class Main {
 
                     case 5:
                         if (previousResults != null && results != null) {
-                            ReportComparison.compareReports(previousResults, results);
-                        } else {
+                            if (previousPatientId.equals(currentPatientId)) {
+                                ReportComparison.compareReports(previousResults, results);
+                            } else {
+                                System.out.println("Cannott compare reports of different patients!.");
+                            }
+                        } else  {
                             System.out.println("Please enter two reports before comparing.");
                         }
                         break;
-
                     case 6:
+                        SearchPatient.searchPatient(sc,results);
+                        break;
+
+                    case 7:
                         System.out.println("Thank you for Using Lab Insight!");
                         break;
 

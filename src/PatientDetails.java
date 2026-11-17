@@ -10,6 +10,10 @@ public class PatientDetails {
         patientId=sc.nextLine();
         System.out.println("Enter Patient Name");
          patientName=sc.nextLine();
+         while(!patientName.matches("[a-zA-Z ]+")){
+             System.out.println("Invalid name .Please Enter alphabets only.");
+             patientName=sc.nextLine();
+         }
         System.out.println("Enter Gender");
          gender=sc.nextLine();
         while(!gender.equalsIgnoreCase("Male") && !gender.equalsIgnoreCase("Female") && !gender.equalsIgnoreCase("Other"))
@@ -18,11 +22,20 @@ public class PatientDetails {
             gender=sc.nextLine();
         }
         System.out.println("Enter Age");
-        age=sc.nextInt();
-        while(age<=0) {
-            System.out.println("Invalid age. Enter again");
-            age = sc.nextInt();
-        }
+        while(true ) {
+            if(sc.hasNextInt()) {
+                age = sc.nextInt();
+                if (age >= 1 && age <= 150) {
+                    break;
+                } else {
+                    System.out.println("Invalid input! Enter age between 1 and 150 ");
+                }
+            }
+            else{
+                    System.out.println("Invalid age. Enter numbers only");
+                    sc.next();
+                }
+            }
             System.out.println("Patient ID:"+ patientId);
             System.out.println("Patient Name:"+patientName);
             System.out.println("Age:" + age );

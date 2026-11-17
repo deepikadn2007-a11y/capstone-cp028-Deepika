@@ -27,10 +27,7 @@ public class PatientReport {
             System.out.println("Reference Range: "
                     + ReferenceRangesPractice.minimumRange[i]
                     + " - "
-                    + ReferenceRangesPractice.maximumRange[i]);
-
-            System.out.println("Unit: " + ReferenceRangesPractice.units[i]);
-
+                    + ReferenceRangesPractice.maximumRange[i] + " " + ReferenceRangesPractice.units[i]);
             if (results[i] < ReferenceRangesPractice.minimumRange[i]) {
                 System.out.println("Status: LOW");
             }
